@@ -38,4 +38,11 @@ jobs:
     if: ${{ fromJSON(needs.check-md-only.outputs.md-only) == true }}
     steps:
     - run: echo ran
+    - name: Spell Check
+      uses: wow-actions/spell-checker@v1
+      with:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         include: |
+            **/*.md
+            **/*.txt
 
