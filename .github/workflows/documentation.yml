@@ -50,6 +50,6 @@ jobs:
     - name: Check Spelling
       if: steps.spell-check.outputs.checks.output.title != 'Perfect Spelling'
       run:  |
-           echo ${{steps.spell-check.outputs}}
+           echo ${{toJson(steps.spell-check.outputs)}}
            exit 1
 
