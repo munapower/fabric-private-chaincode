@@ -36,7 +36,7 @@ jobs:
     needs: ['check-md-only']
     runs-on: ubuntu-latest
     outputs:
-      spell-check: ${{steps.spell-check.outputs.checks.output}}
+      spell-check: ${{steps.spell-check.outputs}}
     if: ${{ fromJSON(needs.check-md-only.outputs.md-only) == true }}
     steps:
     - run: echo ran
@@ -48,8 +48,8 @@ jobs:
          include: |
             **.md
     - name: Check Spelling
-      if: steps.spell-check.outputs.checks.output.title != 'Perfect Spelling'
+      if: steps.spell-check.outputs.title != 'Perfect Spelling'
       run:  |
-           echo ${{steps.spell-check.outputs.checks.output.annotations}}
+           echo ${{fromJson(steps.spell-check.outputs)}}
            exit 1
 
