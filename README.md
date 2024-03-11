@@ -706,7 +706,6 @@ repository is prototype code and not intended for production use.
 ## Initial Committers
 wong 
 wods  
-
 foget
 
 - [Marcus Brandenburger](https://github.com/mbrandenburger) (bur@zurich.ibm.com)
