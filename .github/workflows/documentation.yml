@@ -47,9 +47,14 @@ jobs:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          include: |
             **.md
+  review:
+    name: Review build output
+    needs: ['build']
+    runs-on: ubuntu-latest
+    steps:
     - name: Check Spelling
-      if: steps.spell-check.outputs.title != 'Perfect Spelling'
+      if: needs.build.outputs.spell-check.title != 'Perfect Spelling'
       run:  |
-           echo ${{fromJson(steps.spell-check.outputs)}}
+           echo ${{fromJson(needs.build.outputs.spell-check)}}
            exit 1
 
